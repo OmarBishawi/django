@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+    <style>
+        .message {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .blue {
+            color: blue;
+        }
+        .red {
+            color: red;
+        }
+        .green {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess the Number</h1>
+    {% if message %}
+        <div class="message {{ color }}">{{ message }}</div>
+    {% endif %}
+    {% if not guessed_correctly %}
+        <form action="{% url 'guess' %}" method="POST">
+            {% csrf_token %}
+            <input type="number" name="guess" min="1" max="100" required>
+            <button type="submit">Guess</button>
+        </form>
+    {% else %}
+        <a href="{% url 'reset' %}">Play Again</a>
+    {% endif %}
+</body>
+</html>
