@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold Game</title>
+</head>
+<body>
+    <h1>Your Gold: {{ ninja_gold }}</h1>
+    <form action="{% url 'process_money' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" name="building" value="farm">Farm</button>
+        <button type="submit" name="building" value="cave">Cave</button>
+        <button type="submit" name="building" value="house">House</button>
+        <button type="submit" name="building" value="casino">Casino</button>
+    </form>
+
+    <h2>Activities</h2>
+    <ul>
+        {% for activity in activities %}
+            <li>{{ activity }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
